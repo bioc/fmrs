@@ -1,7 +1,8 @@
 Package: fmrs
 Type: Package
-Title: Variable Selection in Finite Mixture of AFT Regression and FMR Models
-Version: 1.5.1
+Title: Variable Selection in Finite Mixture of AFT Regression and FMR
+        Models
+Version: 2.0.1
 Authors@R: c(person("Farhad", "Shokoohi", role = c("aut", "cre"),
     email = "shokoohi@icloud.com", comment = c(ORCID = "0000-0002-6224-2609"))
     )
@@ -17,15 +18,17 @@ Description: The package obtains parameter estimation, i.e., maximum
     A component-wise tuning parameter selection based on a component-wise BIC is
     implemented in the package.
     Furthermore, this package provides Ridge Regression and Elastic Net.
-Depends: R (>= 4.1.0)
+Depends: R (>= 4.3.0)
 Imports: methods, survival, stats
-Date: 2022-03-28
+Date: 2023-05-16
 biocViews: Survival, Regression, DimensionReduction
 Suggests: BiocGenerics, testthat, knitr, utils
 License: GPL-3
 VignetteBuilder: knitr
 BugReports: https://github.com/shokoohi/fmrs/issues
-Packaged: 2028-03-01 18:49:07 UTC; farhad
-RoxygenNote: 7.1.2.9000
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 NeedsCompilation: yes
+Packaged: 2023-07-01 03:18:34 UTC; farhad
+Author: Farhad Shokoohi [aut, cre] (<https://orcid.org/0000-0002-6224-2609>)
+Maintainer: Farhad Shokoohi <shokoohi@icloud.com>

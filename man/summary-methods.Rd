@@ -61,6 +61,4 @@ summary(res.lam)
 }
 \author{
 Farhad Shokoohi <shokoohi@icloud.com>
-
-Farhad Shokoohi <shokoohi@icloud.com>
 }

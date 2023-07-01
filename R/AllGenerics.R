@@ -396,34 +396,63 @@ BIC.fmrsfit <- function(object, ...) {object@BIC}
 setGeneric("summary", function(object, ...) standardGeneric("summary"))
 summary.fmrsfit <- function(object, ...) {
     if (object@model == "FMR") {
-    modelfmr = "Finite Mixture of Regression Models"
+        if (object@ncomp == 1) {
+            modelfmr = "Regression Models"
+        } else {
+            modelfmr = "Finite Mixture of Regression Models"
+        }
     } else if (object@disFamily == "lnorm") {
-    modelfmr = "Finite Mixture of Accelerated Failure Time Regression Models
-    Log-Normal Sub-Distributions"
+        if (object@ncomp == 1) {
+            modelfmr = "Accelerated Failure Time
+               Regression Models
+            Log-Normal Distribution"
+        } else {
+            modelfmr = "Finite Mixture of Accelerated Failure Time
+                  Regression Models
+            Log-Normal Sub-Distributions"
+        }
     } else {
-    modelfmr = "Finite Mixture of Accelerated Failure Time Regression Models
-    Weibull Sub-Distributions"
+        if (object@ncomp == 1) {
+            modelfmr = "Accelerated Failure Time
+              Regression Models
+            Weibull Distribution"
+        } else {
+            modelfmr = "Finite Mixture of Accelerated Failure Time
+                Regression Models
+            Weibull Sub-Distributions"
+        }
     }
     cat("-------------------------------------------\n")
     cat("Fitted Model: \n")
     cat("-------------------------------------------\n")
     cat(" ", modelfmr, "\n")
-    cat("  ", object@ncomp, " Components; ", object@ncov, " Covariates; ",
-    object@nobs, " samples.", sep = "")
+    if (object@ncomp == 1) {
+        cat("  ", object@ncomp, " Component; ", object@ncov, " Covariates; ",
+            object@nobs, " samples.", sep = "")
+    } else {
+        cat("  ", object@ncomp, " Components; ", object@ncov, " Covariates; ",
+            object@nobs, " samples.", sep = "")
+    }
     cat("\n\nCoefficients:\n")
     print.default(object@coefficients)
-    if(sum(object@activeset) !=(object@ncomp*(object@ncov+1))){
+    if (sum(object@activeset) != (object@ncomp*(object@ncov + 1))) {
     cat("\nOracle Set:\n")
     print.default(object@activeset)
     }
-    if(length(object@penFamily)==1){
+    if (length(object@penFamily) == 1) {
     cat("\nSelected Set:\n")
     print.default(object@selectedset)
     }
-    cat("\nDispersions:\n")
+    if (object@ncomp != 1) {
+        cat("\nDispersion:\n")
+    } else {
+        cat("\nDispersions:\n")
+    }
     print(as.data.frame(object@dispersion), row.names = "")
-    cat("\nMixing Proportions:\n")
-    print(as.data.frame(object@mixProp), row.names = "")
+    if (object@ncomp != 1) {
+        cat("\nMixing Proportions:\n")
+        print(as.data.frame(object@mixProp), row.names = "")
+    }
     cat("\nLogLik: ", object@logLik, "; BIC: ", object@BIC, sep = "")
     cat("\n")
 }
@@ -447,10 +476,12 @@ summary.fmrstunpar <- function(object, ...) {
     if (object@model == "FMR") {
     modelfmr = "Finite Mixture of Regression Models"
     } else if (object@disFamily == "lnorm") {
-    modelfmr = "Finite Mixture of Accelerated Failure Time Regression Models
+    modelfmr = "Finite Mixture of Accelerated Failure Time
+         Regression Models
     Log-Normal Sub-Distributions"
     } else {
-    modelfmr = "Finite Mixture of Accelerated Failure Time Regression Models
+    modelfmr = "Finite Mixture of Accelerated Failure Time
+        Regression Models
     Weibull Sub-Distributions"
     }
     cat("-------------------------------------------\n")

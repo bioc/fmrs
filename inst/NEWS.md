@@ -1,3 +1,17 @@
+## Version 2.0.1
+
+---
+
+
+### IMPROVEMENTS SINCE LAST RELEASE
+
+- Non-mixture of regression models are now added to the package. 
+
+### BUG FIXES
+
+- Several bugs are fixed.
+
+
 ## Version 2.0.0
 
 ---
